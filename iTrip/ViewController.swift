@@ -8,15 +8,31 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
 
   
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        //hideNavigationBar()
+        
     }
 
 
 }
+
+//extension UIViewController{
+//    
+//    func hideNavigationBar(){
+//        // Hide the navigation bar on the this view controller
+//        self.navigationController?.setNavigationBarHidden(true, animated: true)
+//        
+//    }
+//    
+//    func showNavigationBar() {
+//        // Show the navigation bar on other view controllers
+//        self.navigationController?.setNavigationBarHidden(false, animated: true)
+//    }
+//}
 

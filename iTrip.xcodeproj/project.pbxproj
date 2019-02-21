@@ -13,9 +13,7 @@
 		560FE4CB221D9FBD002E1479 /* iTrip.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 560FE4C9221D9FBD002E1479 /* iTrip.xcdatamodeld */; };
 		560FE4CD221D9FC0002E1479 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 560FE4CC221D9FC0002E1479 /* Assets.xcassets */; };
 		560FE4D0221D9FC0002E1479 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 560FE4CE221D9FC0002E1479 /* LaunchScreen.storyboard */; };
-		560FE4D8221DB0F7002E1479 /* swift+gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560FE4D7221DB0F7002E1479 /* swift+gif.swift */; };
-		560FE4DE221EDA7D002E1479 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560FE4DD221EDA7D002E1479 /* HomeViewController.swift */; };
-		560FE4E4221EE557002E1479 /* BlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560FE4E3221EE557002E1479 /* BlogViewController.swift */; };
+		560FE4EC221F02BF002E1479 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560FE4EB221F02BF002E1479 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,9 +25,7 @@
 		560FE4CC221D9FC0002E1479 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		560FE4CF221D9FC0002E1479 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		560FE4D1221D9FC0002E1479 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		560FE4D7221DB0F7002E1479 /* swift+gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "swift+gif.swift"; sourceTree = "<group>"; };
-		560FE4DD221EDA7D002E1479 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		560FE4E3221EE557002E1479 /* BlogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogViewController.swift; sourceTree = "<group>"; };
+		560FE4EB221F02BF002E1479 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,14 +60,12 @@
 			children = (
 				560FE4C2221D9FBD002E1479 /* AppDelegate.swift */,
 				560FE4C4221D9FBD002E1479 /* ViewController.swift */,
-				560FE4DD221EDA7D002E1479 /* HomeViewController.swift */,
+				560FE4EB221F02BF002E1479 /* MapViewController.swift */,
 				560FE4C6221D9FBD002E1479 /* Main.storyboard */,
 				560FE4CC221D9FC0002E1479 /* Assets.xcassets */,
 				560FE4CE221D9FC0002E1479 /* LaunchScreen.storyboard */,
 				560FE4D1221D9FC0002E1479 /* Info.plist */,
 				560FE4C9221D9FBD002E1479 /* iTrip.xcdatamodeld */,
-				560FE4D7221DB0F7002E1479 /* swift+gif.swift */,
-				560FE4E3221EE557002E1479 /* BlogViewController.swift */,
 			);
 			path = iTrip;
 			sourceTree = "<group>";
@@ -147,12 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				560FE4D8221DB0F7002E1479 /* swift+gif.swift in Sources */,
 				560FE4C5221D9FBD002E1479 /* ViewController.swift in Sources */,
-				560FE4E4221EE557002E1479 /* BlogViewController.swift in Sources */,
 				560FE4CB221D9FBD002E1479 /* iTrip.xcdatamodeld in Sources */,
 				560FE4C3221D9FBD002E1479 /* AppDelegate.swift in Sources */,
-				560FE4DE221EDA7D002E1479 /* HomeViewController.swift in Sources */,
+				560FE4EC221F02BF002E1479 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
