@@ -17,6 +17,8 @@
 		560FE4EF222444C8002E1479 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FE4EE222444C7002E1479 /* CoreLocation.framework */; };
 		560FE4F122249541002E1479 /* BlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560FE4F022249540002E1479 /* BlogViewController.swift */; };
 		560FE4F32225A0C8002E1479 /* CustomCellClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560FE4F22225A0C7002E1479 /* CustomCellClass.swift */; };
+		567E7D76222FCAFF00FF5FAC /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567E7D75222FCAFF00FF5FAC /* Pin.swift */; };
+		567E7D78222FF23700FF5FAC /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567E7D77222FF23700FF5FAC /* CustomAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		560FE4EE222444C7002E1479 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		560FE4F022249540002E1479 /* BlogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogViewController.swift; sourceTree = "<group>"; };
 		560FE4F22225A0C7002E1479 /* CustomCellClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellClass.swift; sourceTree = "<group>"; };
+		567E7D75222FCAFF00FF5FAC /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		567E7D77222FF23700FF5FAC /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,16 +70,15 @@
 		560FE4C1221D9FBD002E1479 /* iTrip */ = {
 			isa = PBXGroup;
 			children = (
+				5614A0AE2227F2FE00B91D07 /* View */,
+				5614A0AC2227F2C100B91D07 /* Controllers */,
+				5614A0AB2227F2B100B91D07 /* Models */,
 				560FE4C2221D9FBD002E1479 /* AppDelegate.swift */,
-				560FE4C4221D9FBD002E1479 /* ViewController.swift */,
-				560FE4F022249540002E1479 /* BlogViewController.swift */,
-				560FE4EB221F02BF002E1479 /* MapViewController.swift */,
 				560FE4C6221D9FBD002E1479 /* Main.storyboard */,
 				560FE4CC221D9FC0002E1479 /* Assets.xcassets */,
 				560FE4CE221D9FC0002E1479 /* LaunchScreen.storyboard */,
 				560FE4D1221D9FC0002E1479 /* Info.plist */,
 				560FE4C9221D9FBD002E1479 /* iTrip.xcdatamodeld */,
-				560FE4F22225A0C7002E1479 /* CustomCellClass.swift */,
 			);
 			path = iTrip;
 			sourceTree = "<group>";
@@ -86,6 +89,33 @@
 				560FE4EE222444C7002E1479 /* CoreLocation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5614A0AB2227F2B100B91D07 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				567E7D75222FCAFF00FF5FAC /* Pin.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5614A0AC2227F2C100B91D07 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				560FE4C4221D9FBD002E1479 /* ViewController.swift */,
+				560FE4F022249540002E1479 /* BlogViewController.swift */,
+				560FE4EB221F02BF002E1479 /* MapViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5614A0AE2227F2FE00B91D07 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				560FE4F22225A0C7002E1479 /* CustomCellClass.swift */,
+				567E7D77222FF23700FF5FAC /* CustomAnnotation.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,12 +189,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				567E7D76222FCAFF00FF5FAC /* Pin.swift in Sources */,
 				560FE4C5221D9FBD002E1479 /* ViewController.swift in Sources */,
 				560FE4F122249541002E1479 /* BlogViewController.swift in Sources */,
 				560FE4CB221D9FBD002E1479 /* iTrip.xcdatamodeld in Sources */,
 				560FE4C3221D9FBD002E1479 /* AppDelegate.swift in Sources */,
 				560FE4EC221F02BF002E1479 /* MapViewController.swift in Sources */,
 				560FE4F32225A0C8002E1479 /* CustomCellClass.swift in Sources */,
+				567E7D78222FF23700FF5FAC /* CustomAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

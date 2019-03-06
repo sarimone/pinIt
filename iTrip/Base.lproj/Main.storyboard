@@ -68,6 +68,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="oXS-Wa-lrP"/>
+                    <connections>
+                        <outlet property="startButton" destination="Co1-ai-FrB" id="7lC-0X-S3q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,7 +109,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Dummy"/>
                             <connections>
-                                <segue destination="Nsc-oc-ipo" kind="show" id="QA1-7o-Yic"/>
+                                <segue destination="Nsc-oc-ipo" kind="show" identifier="showBlogVC" id="QA1-7o-Yic"/>
                             </connections>
                         </button>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="skS-6a-NRS">
@@ -155,13 +158,21 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1ix-UI-iIp">
+                                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1ix-UI-iIp">
                                                                     <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="180" id="34N-S3-MBd"/>
                                                                         <constraint firstAttribute="width" constant="180" id="lqK-S3-kvB"/>
                                                                     </constraints>
                                                                 </imageView>
+                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ug7-ve-nEj">
+                                                                    <rect key="frame" x="99" y="10" width="46" height="30"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <connections>
+                                                                        <action selector="removeButtonClick:" destination="Nsc-oc-ipo" eventType="touchUpInside" id="S4f-vW-0bv"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                         </view>
                                                         <constraints>
@@ -172,6 +183,7 @@
                                                         </constraints>
                                                         <connections>
                                                             <outlet property="imageViews" destination="1ix-UI-iIp" id="Aak-Zu-dzt"/>
+                                                            <outlet property="removeBtn" destination="ug7-ve-nEj" id="hCm-uD-FAJ"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
@@ -196,6 +208,14 @@
                                                 </constraints>
                                                 <state key="normal" title="Button" image="icons8-unsplash-50"/>
                                             </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2d-ar-s0C">
+                                                <rect key="frame" x="313" y="20" width="37" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Done"/>
+                                                <connections>
+                                                    <action selector="doneBtnClick:" destination="Nsc-oc-ipo" eventType="touchUpInside" id="FTM-ee-gQR"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -216,6 +236,14 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3H3-fx-pEu">
+                                        <rect key="frame" x="261" y="507" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="clearButtonPressed:" destination="Nsc-oc-ipo" eventType="touchUpInside" id="GXL-23-4xh"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -241,7 +269,10 @@
                         <viewLayoutGuide key="safeArea" id="d7g-ev-vtr"/>
                     </view>
                     <connections>
+                        <outlet property="clearButton" destination="3H3-fx-pEu" id="AJH-vy-i71"/>
+                        <outlet property="doneButton" destination="E2d-ar-s0C" id="rjc-Ka-Svx"/>
                         <outlet property="gallery" destination="i1W-J5-Rf4" id="0Hs-8n-eSV"/>
+                        <outlet property="textView" destination="nWM-Yo-LhR" id="WWV-Oo-lrR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QcJ-0W-yW7" userLabel="First Responder" sceneMemberID="firstResponder"/>
