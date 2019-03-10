@@ -19,8 +19,27 @@ class BlogViewController: UIViewController,UICollectionViewDataSource, UITextVie
     
     var arrOfImages = ["1", "2", "3"]
     var currentArr = [String]()
-    var  longPressedEnabled = false
+    var longPressedEnabled = false
     
+    public var pin: Pin? {
+        didSet {
+            refreshPinData()
+        }
+    }
+    
+    private func refreshPinData() {
+        guard let p = self.pin else { return }
+        
+        if gallery != nil {
+            if let v = p.visited {
+                gallery.backgroundColor = v ? .green : .orange
+            } else {
+                gallery.backgroundColor = .gray
+            }
+        }
+        
+        self.title = p.title
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +49,8 @@ class BlogViewController: UIViewController,UICollectionViewDataSource, UITextVie
         //adding longpress gesture over UICollectionView
        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longTap(_:)))
         gallery.addGestureRecognizer(longPressGesture)
+        
+        refreshPinData()
         
     }
     

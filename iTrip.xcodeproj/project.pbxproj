@@ -19,6 +19,7 @@
 		560FE4F32225A0C8002E1479 /* CustomCellClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560FE4F22225A0C7002E1479 /* CustomCellClass.swift */; };
 		567E7D76222FCAFF00FF5FAC /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567E7D75222FCAFF00FF5FAC /* Pin.swift */; };
 		567E7D78222FF23700FF5FAC /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567E7D77222FF23700FF5FAC /* CustomAnnotation.swift */; };
+		F4B1B8C22232D8500095236E /* PinMKAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1B8C12232D8500095236E /* PinMKAnnotationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		560FE4F22225A0C7002E1479 /* CustomCellClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellClass.swift; sourceTree = "<group>"; };
 		567E7D75222FCAFF00FF5FAC /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		567E7D77222FF23700FF5FAC /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
+		F4B1B8C12232D8500095236E /* PinMKAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinMKAnnotationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			children = (
 				560FE4F22225A0C7002E1479 /* CustomCellClass.swift */,
 				567E7D77222FF23700FF5FAC /* CustomAnnotation.swift */,
+				F4B1B8C12232D8500095236E /* PinMKAnnotationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				560FE4C3221D9FBD002E1479 /* AppDelegate.swift in Sources */,
 				560FE4EC221F02BF002E1479 /* MapViewController.swift in Sources */,
 				560FE4F32225A0C8002E1479 /* CustomCellClass.swift in Sources */,
+				F4B1B8C22232D8500095236E /* PinMKAnnotationView.swift in Sources */,
 				567E7D78222FF23700FF5FAC /* CustomAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
