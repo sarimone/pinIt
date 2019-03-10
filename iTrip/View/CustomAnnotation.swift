@@ -10,7 +10,7 @@
 //import MapKit
 //
 //class CustomAnnotationView : MKAnnotationView {
-//   
+//
 //    override var annotation: MKAnnotation? {
 //        willSet {
 //            guard let annotation = newValue else {return}
