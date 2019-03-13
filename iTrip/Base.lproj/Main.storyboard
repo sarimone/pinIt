@@ -199,14 +199,9 @@
                                                     <constraint firstAttribute="height" constant="30" id="jHK-ss-0Cj"/>
                                                 </constraints>
                                                 <state key="normal" title="Button" image="icons8-image-file-50"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QsJ-iw-K4R" userLabel="CameraButton">
-                                                <rect key="frame" x="60" y="20" width="30" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="30" id="geg-Of-MC4"/>
-                                                    <constraint firstAttribute="height" constant="30" id="lc1-Bi-eRf"/>
-                                                </constraints>
-                                                <state key="normal" title="Button" image="icons8-unsplash-50"/>
+                                                <connections>
+                                                    <action selector="uploadeImagePressed:" destination="Nsc-oc-ipo" eventType="touchUpInside" id="YKn-OR-hrm"/>
+                                                </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2d-ar-s0C">
                                                 <rect key="frame" x="313" y="20" width="37" height="30"/>
@@ -220,10 +215,8 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="i1W-J5-Rf4" firstAttribute="top" secondItem="R6p-6V-sUw" secondAttribute="top" constant="60" id="6pQ-a3-yfd"/>
-                                            <constraint firstItem="QsJ-iw-K4R" firstAttribute="top" secondItem="R6p-6V-sUw" secondAttribute="top" constant="20" id="AWt-S4-ajo"/>
                                             <constraint firstAttribute="bottom" secondItem="i1W-J5-Rf4" secondAttribute="bottom" id="BjQ-kN-eir"/>
                                             <constraint firstItem="i1W-J5-Rf4" firstAttribute="centerX" secondItem="R6p-6V-sUw" secondAttribute="centerX" id="FRZ-BP-bTO"/>
-                                            <constraint firstItem="QsJ-iw-K4R" firstAttribute="leading" secondItem="TBk-rW-cQB" secondAttribute="trailing" constant="10" id="T4v-yN-R4X"/>
                                             <constraint firstItem="TBk-rW-cQB" firstAttribute="top" secondItem="R6p-6V-sUw" secondAttribute="top" constant="20" id="W07-XJ-vOb"/>
                                             <constraint firstAttribute="height" constant="470" id="gGV-BO-IcR"/>
                                             <constraint firstItem="i1W-J5-Rf4" firstAttribute="leading" secondItem="R6p-6V-sUw" secondAttribute="leading" id="qfB-z6-ddQ"/>
@@ -273,6 +266,7 @@
                         <outlet property="doneButton" destination="E2d-ar-s0C" id="rjc-Ka-Svx"/>
                         <outlet property="gallery" destination="i1W-J5-Rf4" id="0Hs-8n-eSV"/>
                         <outlet property="textView" destination="nWM-Yo-LhR" id="WWV-Oo-lrR"/>
+                        <outlet property="uploadeImageButton" destination="TBk-rW-cQB" id="B7p-qF-2Be"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QcJ-0W-yW7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -305,7 +299,6 @@
     <resources>
         <image name="adult-book-business-297755" width="6689" height="4368"/>
         <image name="icons8-image-file-50" width="37.5" height="37.5"/>
-        <image name="icons8-unsplash-50" width="37.5" height="37.5"/>
         <image name="pin_1138511" width="491.51998901367188" height="491.51998901367188"/>
     </resources>
 </document>

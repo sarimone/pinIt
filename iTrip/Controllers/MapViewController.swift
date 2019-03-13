@@ -66,9 +66,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
             
             if response == nil { print("error") }
             else {
-                    // Remove annotations
-//                let annotations = self.myMapView.annotations
-//                self.myMapView.removeAnnotations(annotations)
+
                 
                 // Getting data
                 let latitude = response?.boundingRegion.center.latitude
@@ -91,7 +89,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
         }
 
     }
-//
+
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 //        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
         if let pin = annotation as? Pin {
@@ -108,29 +106,6 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
         }
         return nil
     }
-    
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? { return nil }
-//    guard !(annotation is MKUserLocation) else {
-    
-//    var selectedPinIndex = -1
-//
-//    func goToSelectedPin(visited: Bool) {
-//        guard selectedPin != nil else {return}
-//        selectedPin!.visited = visited
-//        self.performSegue(withIdentifier: "showBlogVC", sender: selectedPin)
-//    }
-//
-//    func visitedLocation(alert: UIAlertAction!) {
-//        //write one line of code like showAnnotation or addAnnotation or selectAnnotation to redirect to the customAnnotation view method
-//        goToSelectedPin(visited: true)
-//    }
-//
-//    func toVisitLocation(alert: UIAlertAction!) {
-//
-//        //write one line of code like showAnnotation or addAnnotation or selectAnnotation to redirect to the customAnnotation view method
-//        // bool value is required to know wheichone is selected ....
-//        goToSelectedPin(visited: false)
-//    }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         // Alart either cancel the pin or define the pin
@@ -177,27 +152,10 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
-        
-//        for i in locations {
-//            let annotation = MKPointAnnotation()
-//            //annotation.title = searchBar.text
-//            annotation.coordinate = i.location
-//            annotationView
-//
-//
-//
-//            self.myMapView.addAnnotation(annotation)
-//
-//        }
-   
-        
-        
         self.myMapView.addAnnotations(self.locations)
    
     }
  
-
-
     /*
     // MARK: - Navigation
 

@@ -10,17 +10,23 @@ import UIKit
 import Photos
 
 
-class BlogViewController: UIViewController,UICollectionViewDataSource, UITextViewDelegate, UICollectionViewDelegate {
+class BlogViewController: UIViewController, UINavigationControllerDelegate, UICollectionViewDataSource, UITextViewDelegate, UICollectionViewDelegate {
 
     @IBOutlet weak var gallery: UICollectionView!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var uploadeImageButton: UIButton!
+   
     
-    var arrOfImages = ["1", "2", "3"]
-    var currentArr = [String]()
+    
+    var imagePicker = UIImagePickerController()
+    var arrOfImages = [UIImage]()
+
     var longPressedEnabled = false
     
+    
+    // Not sure what this part of the code does
     public var pin: Pin? {
         didSet {
             refreshPinData()
@@ -29,15 +35,6 @@ class BlogViewController: UIViewController,UICollectionViewDataSource, UITextVie
     
     private func refreshPinData() {
         guard let p = self.pin else { return }
-        
-        if gallery != nil {
-            if let v = p.visited {
-                gallery.backgroundColor = v ? .green : .orange
-            } else {
-                gallery.backgroundColor = .gray
-            }
-        }
-        
         self.title = p.title
     }
     
@@ -70,11 +67,7 @@ class BlogViewController: UIViewController,UICollectionViewDataSource, UITextVie
             gallery.endInteractiveMovement()
             doneButton.isHidden = false
             longPressedEnabled = true
-            if currentArr.isEmpty{
-            UserDefaults.standard.set(self.arrOfImages, forKey: "imageCells")
-            }else{
-                UserDefaults.standard.set(self.currentArr, forKey: "imageCells")
-            }
+           
             self.gallery.reloadData()
             
         default:
@@ -99,37 +92,20 @@ class BlogViewController: UIViewController,UICollectionViewDataSource, UITextVie
         //remove the image and refresh the collection view
         self.arrOfImages.remove(at: (hitIndex?.row)!)
         self.gallery.reloadData()
-        UserDefaults.standard.set(self.arrOfImages, forKey: "imageCells")
+       
     }
-    
-//    @IBAction func doneButtonClick(_ sender: UIButton) {
-//        //disable the shake and hide done button
-//        doneButton.isHidden = true
-//        longPressedEnabled = false
-//
-//        self.gallery.reloadData()
-//    }
-    
 
     
     // How many items
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.arrOfImages.count
         
-        if currentArr.isEmpty {
-            self.currentArr = self.arrOfImages
-        } else {
-            
-             self.currentArr = UserDefaults.standard.object(forKey: "imageCells") as! [String]
-        }
-        
-
-        return self.currentArr.count
     }
 
     // How it should look
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCellClass", for: indexPath) as! CustomCellClass
-        cell.imageViews.image = UIImage(named:self.currentArr[indexPath.row])
+        cell.imageViews.image = self.arrOfImages[indexPath.row]
         cell.removeBtn.addTarget(self, action: #selector(removeBtnClick(_:)), for: .touchUpInside)
         
         if longPressedEnabled   {
@@ -140,33 +116,60 @@ class BlogViewController: UIViewController,UICollectionViewDataSource, UITextVie
         return cell
     }
     
-    func textViewDidBeginEditing(_ textView: UITextView) {
-         clearButton.isEnabled = true
+ 
+    // Uploade image button
+    
+    @IBAction func uploadeImagePressed(_ sender: UIButton) {
+        self.openGallery()
     }
-  
+    
+
+    func openGallery()
+    {
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePicker.allowsEditing = true
+        self.imagePicker.delegate = self
+        self.present(imagePicker, animated: true, completion: nil)
+        
+    }
+    
+    
+    //Text field
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        clearButton.isEnabled = true
+    }
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         UserDefaults.standard.setValue(textView.text, forKey: "myData")
         UserDefaults.standard.synchronize()
     }
     
-
+    
     @IBAction func clearButtonPressed(_ sender: Any) {
         textView.text = ""
         clearButton.isEnabled = false
     }
     
     
+    
     override func viewWillAppear(_ animated: Bool) {
         let myData = UserDefaults.standard.object(forKey: "myData") as? String ?? ""
         self.textView.text = myData
-        if self.currentArr.isEmpty{
-            UserDefaults.standard.set(self.arrOfImages, forKey: "imageCells")
-        }
-        UserDefaults.standard.set(self.currentArr, forKey: "imageCells")
-       
-        
         
     }
+    
+    
+    
+//    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        if let img = info[UIImagePickerController.InfoKey.mediaURL] as? String {
+//            // imageViewPic.contentMode = .scaleToFill
+//            self.arrOfImages.append(img)
+//            self.gallery.reloadData()
+//        }
+//        picker.dismiss(animated: true, completion: nil)
+//    }
+    
     
     /*
     // MARK: - Navigation
@@ -177,5 +180,18 @@ class BlogViewController: UIViewController,UICollectionViewDataSource, UITextVie
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+extension BlogViewController: UIImagePickerControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
+        imagePicker.dismiss(animated: true, completion: nil)
+        guard let selectedImage = info[.originalImage] as? UIImage else {
+            print("Image not found!")
+            return
+        }
+        self.arrOfImages.append(selectedImage)
+        self.gallery.reloadData()
+//        imageTake.image = selectedImage
+    }
 }
