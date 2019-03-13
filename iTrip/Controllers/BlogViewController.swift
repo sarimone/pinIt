@@ -40,6 +40,10 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate {
         if self.textView != nil {
             self.textView.text = p.title
         }
+        if self.gallery != nil {
+            self.arrOfImages = p.images
+            gallery.reloadData()
+        }
     }
     
     override func viewDidLoad() {
@@ -62,6 +66,7 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate {
     @objc func back(sender: UIBarButtonItem) {
         if mapViewDelegate != nil, let index = self.index, let newPin = self.pin {
             newPin.title = self.textView.text
+            newPin.images = self.arrOfImages
             mapViewDelegate.savePin(index: index, pin: newPin)
         }
         _ = navigationController?.popViewController(animated: true)

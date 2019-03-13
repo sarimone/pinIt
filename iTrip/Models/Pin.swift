@@ -17,6 +17,7 @@ class Pin:NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var identifier = "locations"
     var title: String? = ""
+    var images: [UIImage] = []
     
     func image() -> UIImage{
         
@@ -39,10 +40,11 @@ class Pin:NSObject, MKAnnotation {
 //    }
     
     
-    init(name:String, visited:Bool?, location:CLLocationCoordinate2D) {
+    init(name:String, visited:Bool?, location:CLLocationCoordinate2D, images: [UIImage] = []) {
         self.visited = visited
         self.coordinate = location
         self.title = name
+        self.images = images
     }
 
 }

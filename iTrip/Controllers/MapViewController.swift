@@ -151,8 +151,10 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
     
   
     var locations: [Pin] = [
-        Pin(name: "Pickwick Hotel", visited: false, location:CLLocationCoordinate2D(latitude: 37.7834, longitude: -122.406417)),
-        Pin(name:"Fashion Institute", visited: true, location:CLLocationCoordinate2D(latitude: 37.785836, longitude: -122.406410))]
+        Pin(name: "Pickwick Hotel", visited: false, location:CLLocationCoordinate2D(latitude: 37.7834, longitude: -122.406417), images: [
+            UIImage(named: "1")!, UIImage(named: "2")!]),
+        Pin(name:"Fashion Institute", visited: true, location:CLLocationCoordinate2D(latitude: 37.785836, longitude: -122.406410), images: [UIImage(named: "3")!])
+    ]
 
     
     
