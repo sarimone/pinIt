@@ -10,8 +10,12 @@ import UIKit
 import MapKit
 import CoreLocation
 
-
-class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+protocol MapBlogDelegate {
+    func savePin (index: Int, pin:Pin)
+    
+    
+}
+class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegate, CLLocationManagerDelegate, MapBlogDelegate {
     
     @IBOutlet weak var myMapView: MKMapView!
     
@@ -33,6 +37,12 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.delegate = self
         present(searchController, animated: true, completion: nil)
+    }
+    
+
+    func savePin (index: Int, pin: Pin){
+        locations[index] = pin
+        refreshAnnotations()
     }
     
     
@@ -107,23 +117,32 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
         return nil
     }
     
+    func refreshAnnotations() {
+        for annotation in myMapView.annotations {
+            myMapView.removeAnnotation(annotation);
+            myMapView.addAnnotation(annotation);
+        }
+    }
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         // Alart either cancel the pin or define the pin
         guard let pinView = view as? PinMKAnnotationView else { return }
         guard let pin = pinView.pin else { return }
-        
+        guard let index = self.locations.index(of:pin) else { return }
         
         if pin.visited == nil {
             
             let alert = UIAlertController(title: "Location Status", message: "Add or Cancel?", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "Visited?", style: .default, handler: {(alert: UIAlertAction!) in
-                pin.visited = true
-                self.performSegue(withIdentifier: "showBlogVC", sender: pin)
+                self.locations[index].visited = true
+                self.refreshAnnotations()
+                self.performSegue(withIdentifier: "showBlogVC", sender: index)
             }))
             alert.addAction(UIAlertAction(title: "To Visit", style: .default, handler: {(alert: UIAlertAction!) in
-                pin.visited = false
-                self.performSegue(withIdentifier: "showBlogVC", sender: pin)
+                self.locations[index].visited = false
+                self.refreshAnnotations()
+                self.performSegue(withIdentifier: "showBlogVC", sender: index)
             }))
             
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler:{(alertAction:UIAlertAction!) in
@@ -133,7 +152,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
             self.present(alert, animated: true, completion: nil)
             
         } else {
-            self.performSegue(withIdentifier: "showBlogVC", sender: pin)
+            self.performSegue(withIdentifier: "showBlogVC", sender: index)
         }
         
     }
@@ -166,8 +185,9 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if let blogVC = segue.destination as? BlogViewController {
-            guard let pin = sender as? Pin else { return }
-            blogVC.pin = pin
+            guard let index = sender as! Array<Pin>.Index? else { return }
+            blogVC.pin = self.locations[index]
+            blogVC.index = index
         }
         
     }

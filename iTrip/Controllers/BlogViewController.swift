@@ -19,19 +19,20 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate, UICo
     @IBOutlet weak var uploadeImageButton: UIButton!
    
     
-    
     var imagePicker = UIImagePickerController()
     var arrOfImages = [UIImage]()
-
+    
     var longPressedEnabled = false
     
+    public var mapViewDelegate: MapBlogDelegate!
     
-    // Not sure what this part of the code does
     public var pin: Pin? {
         didSet {
             refreshPinData()
         }
     }
+    
+    public var index: Int?
     
     private func refreshPinData() {
         guard let p = self.pin else { return }
@@ -49,9 +50,23 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate, UICo
         
         refreshPinData()
         
+        
+        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(BlogViewController.back(sender:)))
+        self.navigationItem.leftBarButtonItem = newBackButton
+        
     }
     
     
+    @objc func back(sender: UIBarButtonItem) {
+        // Perform your custom actions
+        // ...
+        // Go back to the previous ViewController
+        _ = navigationController?.popViewController(animated: true)
+        guard ((pin != nil) && (self.index != nil)) else { return }
+        let newPin = self.pin!
+        newPin.title = self.textView.text
+        mapViewDelegate.savePin(index: self.index!, pin: newPin)
+    }
     
     @objc func longTap(_ gesture: UIGestureRecognizer){
         
@@ -159,18 +174,16 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate, UICo
         
     }
     
-    
-    
-//    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        if let img = info[UIImagePickerController.InfoKey.mediaURL] as? String {
-//            // imageViewPic.contentMode = .scaleToFill
-//            self.arrOfImages.append(img)
-//            self.gallery.reloadData()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+//        if var blogVC = segue.destination as? MapViewController{
+//            let newPin = self.pin!
+//            newPin.title = self.textView.text
+//            mapViewDelegate.savePin(index: index!, pin: newPin)
 //        }
-//        picker.dismiss(animated: true, completion: nil)
-//    }
-    
-    
+    }
+
     /*
     // MARK: - Navigation
 
@@ -194,4 +207,5 @@ extension BlogViewController: UIImagePickerControllerDelegate {
         self.gallery.reloadData()
 //        imageTake.image = selectedImage
     }
+    
 }
