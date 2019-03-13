@@ -15,7 +15,7 @@ protocol MapBlogDelegate {
     
     
 }
-class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegate, CLLocationManagerDelegate, MapBlogDelegate {
+class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var myMapView: MKMapView!
     
@@ -31,20 +31,12 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
         self.myMapView.showsUserLocation = true
     }
     
-    
     @IBAction func searchBtn(_ sender: Any) {
        let searchController = UISearchController(searchResultsController: nil)
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.delegate = self
         present(searchController, animated: true, completion: nil)
     }
-    
-
-    func savePin (index: Int, pin: Pin){
-        locations[index] = pin
-        refreshAnnotations()
-    }
-    
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
@@ -188,6 +180,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
             guard let index = sender as! Array<Pin>.Index? else { return }
             blogVC.pin = self.locations[index]
             blogVC.index = index
+            blogVC.mapViewDelegate = self
         }
         
     }
@@ -195,5 +188,10 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
 }
 
 
-
-
+extension MapViewController: MapBlogDelegate {
+    
+    func savePin (index: Int, pin: Pin){
+        locations[index] = pin
+        refreshAnnotations()
+    }
+}

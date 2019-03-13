@@ -10,7 +10,7 @@ import UIKit
 import Photos
 
 
-class BlogViewController: UIViewController, UINavigationControllerDelegate, UICollectionViewDataSource, UITextViewDelegate, UICollectionViewDelegate {
+class BlogViewController: UIViewController, UINavigationControllerDelegate {
 
     @IBOutlet weak var gallery: UICollectionView!
     @IBOutlet weak var clearButton: UIButton!
@@ -34,9 +34,12 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate, UICo
     
     public var index: Int?
     
-    private func refreshPinData() {
+    public func refreshPinData() {
         guard let p = self.pin else { return }
         self.title = p.title
+        if self.textView != nil {
+            self.textView.text = p.title
+        }
     }
     
     override func viewDidLoad() {
@@ -50,7 +53,6 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate, UICo
         
         refreshPinData()
         
-        
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(BlogViewController.back(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
         
@@ -58,14 +60,11 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate, UICo
     
     
     @objc func back(sender: UIBarButtonItem) {
-        // Perform your custom actions
-        // ...
-        // Go back to the previous ViewController
+        if mapViewDelegate != nil, let index = self.index, let newPin = self.pin {
+            newPin.title = self.textView.text
+            mapViewDelegate.savePin(index: index, pin: newPin)
+        }
         _ = navigationController?.popViewController(animated: true)
-        guard ((pin != nil) && (self.index != nil)) else { return }
-        let newPin = self.pin!
-        newPin.title = self.textView.text
-        mapViewDelegate.savePin(index: self.index!, pin: newPin)
     }
     
     @objc func longTap(_ gesture: UIGestureRecognizer){
@@ -109,27 +108,6 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate, UICo
         self.gallery.reloadData()
        
     }
-
-    
-    // How many items
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.arrOfImages.count
-        
-    }
-
-    // How it should look
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCellClass", for: indexPath) as! CustomCellClass
-        cell.imageViews.image = self.arrOfImages[indexPath.row]
-        cell.removeBtn.addTarget(self, action: #selector(removeBtnClick(_:)), for: .touchUpInside)
-        
-        if longPressedEnabled   {
-            cell.startAnimate()
-        }else{
-            cell.stopAnimate()
-        }
-        return cell
-    }
     
  
     // Uploade image button
@@ -148,8 +126,38 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate, UICo
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        refreshPinData()
+    }
     
-    //Text field
+}
+
+extension BlogViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    // How many items
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.arrOfImages.count
+        
+    }
+    
+    // How it should look
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCellClass", for: indexPath) as! CustomCellClass
+        cell.imageViews.image = self.arrOfImages[indexPath.row]
+        cell.removeBtn.addTarget(self, action: #selector(removeBtnClick(_:)), for: .touchUpInside)
+        
+        if longPressedEnabled   {
+            cell.startAnimate()
+        }else{
+            cell.stopAnimate()
+        }
+        return cell
+    }
+}
+
+//Text field
+extension BlogViewController: UITextViewDelegate {
+    
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         clearButton.isEnabled = true
@@ -165,34 +173,6 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate, UICo
         textView.text = ""
         clearButton.isEnabled = false
     }
-    
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        let myData = UserDefaults.standard.object(forKey: "myData") as? String ?? ""
-        self.textView.text = myData
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-//        if var blogVC = segue.destination as? MapViewController{
-//            let newPin = self.pin!
-//            newPin.title = self.textView.text
-//            mapViewDelegate.savePin(index: index!, pin: newPin)
-//        }
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }
 
 extension BlogViewController: UIImagePickerControllerDelegate {
