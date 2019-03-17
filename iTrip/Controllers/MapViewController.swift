@@ -151,9 +151,9 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
     
   
     var locations: [Pin] = [
-        Pin(name: "Pickwick Hotel", visited: false, location:CLLocationCoordinate2D(latitude: 37.7834, longitude: -122.406417), images: [
-            UIImage(named: "1")!, UIImage(named: "2")!]),
-        Pin(name:"Fashion Institute", visited: true, location:CLLocationCoordinate2D(latitude: 37.785836, longitude: -122.406410), images: [UIImage(named: "3")!])
+//        Pin(name: "Pickwick Hotel", visited: false, location:CLLocationCoordinate2D(latitude: 37.7834, longitude: -122.406417), images: [
+//            UIImage(named: "1")!, UIImage(named: "2")!]),
+//        Pin(name:"Fashion Institute", visited: true, location:CLLocationCoordinate2D(latitude: 37.785836, longitude: -122.406410), images: [UIImage(named: "3")!])
     ]
 
     
@@ -165,8 +165,14 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
-        self.myMapView.addAnnotations(self.locations)
+        loadPins()
+//        self.myMapView.addAnnotations(self.locations)
    
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
  
     /*
@@ -182,11 +188,42 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
             guard let index = sender as! Array<Pin>.Index? else { return }
             blogVC.pin = self.locations[index]
             blogVC.index = index
-            blogVC.mapViewDelegate = self
+            blogVC.mapViewDelegate = self as MapBlogDelegate
         }
         
     }
-
+    
+    func savePins() {
+        if #available(iOS 12.0, *) {
+            // use iOS 12-only feature
+            do {
+                let data = try NSKeyedArchiver.archivedData(withRootObject: locations, requiringSecureCoding: false)
+                UserDefaults.standard.set(data, forKey: "TESTSERST")
+            } catch {
+                print("Saving not successfull")
+                return
+            }
+        } else {
+            // handle older versions
+            let data = NSKeyedArchiver.archivedData(withRootObject: locations)
+            UserDefaults.standard.set(data, forKey: "TESTSERST")
+        }
+    }
+    
+    func loadPins() {
+        let pinsData = UserDefaults.standard.object(forKey: "TESTSERST") as? Data
+        myMapView.removeAnnotations(myMapView.annotations)
+        locations = []
+        if let pinsData = pinsData {
+            do {
+                let pinArray = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(pinsData) as? [Pin]
+                locations = pinArray ?? []
+            } catch {
+                print("pins not loaded")
+            }
+        }
+        myMapView.addAnnotations(locations)
+    }
 }
 
 
@@ -195,5 +232,6 @@ extension MapViewController: MapBlogDelegate {
     func savePin (index: Int, pin: Pin){
         locations[index] = pin
         refreshAnnotations()
+        savePins()
     }
 }
