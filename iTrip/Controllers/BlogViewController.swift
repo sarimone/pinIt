@@ -17,7 +17,9 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var uploadeImageButton: UIButton!
-   
+    @IBOutlet weak var removeBlog: UIButton!
+    @IBOutlet weak var switchPinStatus: UISwitch!
+    
     
     var imagePicker = UIImagePickerController()
     var arrOfImages = [UIImage]()
@@ -44,6 +46,9 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate {
             self.arrOfImages = p.images
             gallery.reloadData()
         }
+        if self.switchPinStatus != nil{
+            switchPinStatus.isOn = p.visited ?? false
+        }
     }
     
     override func viewDidLoad() {
@@ -67,6 +72,7 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate {
         if mapViewDelegate != nil, let index = self.index, let newPin = self.pin {
             newPin.title = self.textView.text
             newPin.images = self.arrOfImages
+            newPin.visited = switchPinStatus.isOn
             mapViewDelegate.savePin(index: index, pin: newPin)
         }
         _ = navigationController?.popViewController(animated: true)
@@ -135,6 +141,20 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate {
         refreshPinData()
     }
     
+    // When button is clicked remove the saved pin and associated blog
+    @IBAction func removeBlogOnClick(_ sender: Any) {
+       
+        if mapViewDelegate != nil, let index = self.index, let newPin = self.pin {
+            newPin.title = self.textView.text
+            newPin.images = self.arrOfImages
+            mapViewDelegate.removePin(index: index)
+        
+        }
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
+
+    
 }
 
 extension BlogViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -179,6 +199,8 @@ extension BlogViewController: UITextViewDelegate {
         clearButton.isEnabled = false
     }
 }
+
+
 
 extension BlogViewController: UIImagePickerControllerDelegate {
     

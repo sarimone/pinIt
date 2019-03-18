@@ -130,7 +130,7 @@
         <!--Blog View Controller-->
         <scene sceneID="apD-ex-Hhc">
             <objects>
-                <viewController storyboardIdentifier="BlogViewController" id="Nsc-oc-ipo" customClass="BlogViewController" customModule="iTrip" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BlogViewController" hidesBottomBarWhenPushed="YES" id="Nsc-oc-ipo" customClass="BlogViewController" customModule="iTrip" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cjg-tZ-gle">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -237,6 +237,21 @@
                                             <action selector="clearButtonPressed:" destination="Nsc-oc-ipo" eventType="touchUpInside" id="GXL-23-4xh"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1EU-R6-57P">
+                                        <rect key="frame" x="8" y="565" width="90" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Remove Blog">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="removeBlogOnClick:" destination="Nsc-oc-ipo" eventType="touchUpInside" id="Oz3-RM-CXD"/>
+                                        </connections>
+                                    </button>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3I5-IL-CoE">
+                                        <rect key="frame" x="320" y="564" width="49" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -265,6 +280,8 @@
                         <outlet property="clearButton" destination="3H3-fx-pEu" id="AJH-vy-i71"/>
                         <outlet property="doneButton" destination="E2d-ar-s0C" id="rjc-Ka-Svx"/>
                         <outlet property="gallery" destination="i1W-J5-Rf4" id="0Hs-8n-eSV"/>
+                        <outlet property="removeBlog" destination="1EU-R6-57P" id="Vn7-kP-evP"/>
+                        <outlet property="switchPinStatus" destination="3I5-IL-CoE" id="dST-TB-BI6"/>
                         <outlet property="textView" destination="nWM-Yo-LhR" id="WWV-Oo-lrR"/>
                         <outlet property="uploadeImageButton" destination="TBk-rW-cQB" id="B7p-qF-2Be"/>
                     </connections>

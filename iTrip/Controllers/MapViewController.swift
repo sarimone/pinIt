@@ -12,8 +12,8 @@ import CoreLocation
 
 protocol MapBlogDelegate {
     func savePin (index: Int, pin:Pin)
-    
-    
+    func removePin (index: Int)
+  
 }
 class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -138,7 +138,11 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
             }))
             
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler:{(alertAction:UIAlertAction!) in
+                self.myMapView.removeAnnotation(pin)
+                self.locations.remove(at: index)
+                self.refreshAnnotations()
                 alert.dismiss(animated: true, completion: nil)
+                
             }))
             
             self.present(alert, animated: true, completion: nil)
@@ -210,6 +214,8 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
         }
     }
     
+
+    
     func loadPins() {
         let pinsData = UserDefaults.standard.object(forKey: "TESTSERST") as? Data
         myMapView.removeAnnotations(myMapView.annotations)
@@ -234,4 +240,14 @@ extension MapViewController: MapBlogDelegate {
         refreshAnnotations()
         savePins()
     }
+    
+    func removePin (index: Int){
+        
+        myMapView.removeAnnotation(locations[index])
+        locations.remove(at: index)
+        refreshAnnotations()
+        savePins()
+    }
+    
+  
 }
