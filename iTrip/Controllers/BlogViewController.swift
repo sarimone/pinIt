@@ -17,7 +17,6 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var uploadeImageButton: UIButton!
-    @IBOutlet weak var removeBlog: UIButton!
     @IBOutlet weak var switchPinStatus: UISwitch!
     
     
@@ -61,14 +60,14 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate {
         gallery.addGestureRecognizer(longPressGesture)
         
         refreshPinData()
-        
-        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(BlogViewController.back(sender:)))
-        self.navigationItem.leftBarButtonItem = newBackButton
-        
     }
     
     
-    @objc func back(sender: UIBarButtonItem) {
+    @IBAction func backClick(_ sender: Any?) {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func saveClick(_ sender: Any?) {
         if mapViewDelegate != nil, let index = self.index, let newPin = self.pin {
             newPin.title = self.textView.text
             newPin.images = self.arrOfImages
