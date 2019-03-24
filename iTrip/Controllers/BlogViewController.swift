@@ -138,7 +138,7 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        refreshPinData()
+//        refreshPinData()
     }
     
     // When button is clicked remove the saved pin and associated blog
@@ -212,7 +212,6 @@ extension BlogViewController: UIImagePickerControllerDelegate {
         }
         self.arrOfImages.append(selectedImage)
         self.gallery.reloadData()
-//        imageTake.image = selectedImage
     }
     
 }

@@ -55,8 +55,6 @@ class Pin: NSObject, NSCoding, MKAnnotation {
     
     func encode(with aCoder: NSCoder) {
         
-        print(Double(coordinate.latitude), Double(coordinate.longitude))
-        
         let coordinateLatDouble = Double(coordinate.latitude)
         let coordinateLngDouble = Double(coordinate.longitude)
         
@@ -65,7 +63,10 @@ class Pin: NSObject, NSCoding, MKAnnotation {
         aCoder.encode(coordinateLatDouble, forKey: Key.coordinateLat.rawValue)
         aCoder.encode(coordinateLngDouble, forKey: Key.coordinateLng.rawValue)
         aCoder.encode(identifier, forKey: Key.identifier.rawValue)
-        aCoder.encode(images, forKey: Key.images.rawValue)
+        
+        if images.count > 0, let data = images[0].pngData() {
+            aCoder.encode(data, forKey: Key.images.rawValue)
+        }
     }
     
     convenience required init?(coder aDecoder: NSCoder) {
@@ -76,7 +77,14 @@ class Pin: NSObject, NSCoding, MKAnnotation {
         let coordinateLatDouble = aDecoder.decodeDouble(forKey: Key.coordinateLat.rawValue)
         let coordinateLngDouble = aDecoder.decodeDouble(forKey: Key.coordinateLng.rawValue)
         let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(coordinateLatDouble), longitude: CLLocationDegrees(coordinateLngDouble))
-        self.init(name:title, visited:visited, location:coordinate, images: [])
+        
+        var images: [UIImage] = []
+        if let data = aDecoder.decodeObject(forKey: Key.images.rawValue) as? Data {
+            if let image = UIImage(data: data) {
+                images.append(image)
+            }
+        }
+        self.init(name:title, visited:visited, location:coordinate, images: images)
     }
 
 }
