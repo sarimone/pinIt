@@ -13,8 +13,8 @@ import CoreLocation
 protocol MapBlogDelegate {
     func savePin (index: Int, pin:Pin)
     func removePin (index: Int)
-  
 }
+
 class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var myMapView: MKMapView!
@@ -68,41 +68,46 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
             
             if response == nil { print("error") }
             else {
-
                 
-                // Getting data
-                let latitude = response?.boundingRegion.center.latitude
-                let longitude = response?.boundingRegion.center.longitude
-//                let newPin = Pin
-                
-                // create annotation
-                let pin = Pin(name: searchBar.text ?? "undefined", visited: nil, location: CLLocationCoordinate2DMake(latitude!, longitude!))
-//                self.myMapView.addAnnotation(annotation)
-                self.locations.append(pin)
-                self.myMapView.addAnnotation(pin)
-                
-                // zoom in on annotation
-                let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: latitude! ,longitude: longitude!)
-                let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-                let region = MKCoordinateRegion(center: coordinate,span: span)
-                self.myMapView.setRegion(region, animated: true)
+                self.addPin(
+                    location: CLLocationCoordinate2DMake(
+                        response?.boundingRegion.center.latitude ?? 0,
+                        response?.boundingRegion.center.longitude ?? 0
+                    ),
+                    title: searchBar.text ?? "undefined"
+                )
                 
             }
         }
 
     }
+    
+    func addPin(location: CLLocationCoordinate2D, title: String) {
+        var matchingPin: Pin?
+        for pin in locations {
+            if matchingPin == nil && pin.overlapping(location) {
+                matchingPin = pin
+            }
+        }
+        if matchingPin == nil {
+            matchingPin = Pin(name: title, visited: nil, location: location)
+            self.locations.append(matchingPin!)
+            self.myMapView.addAnnotation(matchingPin!)
+        }
+        
+        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        let region = MKCoordinateRegion(center: matchingPin!.coordinate, span: span)
+        self.myMapView.setRegion(region, animated: true)
+    }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
         if let pin = annotation as? Pin {
             if let view = mapView.dequeueReusableAnnotationView(withIdentifier: pin.identifier){
                 return view
             } else {
                 let view = PinMKAnnotationView(annotation: pin, reuseIdentifier: pin.identifier)
-//                view.image = pin.image()
                 view.isEnabled = true
                 view.canShowCallout = true
-                //view.leftCalloutAccessoryView = UIImageView(image: pin)
                 return view
             }
         }
@@ -154,11 +159,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
     }
     
   
-    var locations: [Pin] = [
-//        Pin(name: "Pickwick Hotel", visited: false, location:CLLocationCoordinate2D(latitude: 37.7834, longitude: -122.406417), images: [
-//            UIImage(named: "1")!, UIImage(named: "2")!]),
-//        Pin(name:"Fashion Institute", visited: true, location:CLLocationCoordinate2D(latitude: 37.785836, longitude: -122.406410), images: [UIImage(named: "3")!])
-    ]
+    var locations: [Pin] = []
 
     
     
@@ -170,7 +171,6 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
         loadPins()
-//        self.myMapView.addAnnotations(self.locations)
    
     }
     

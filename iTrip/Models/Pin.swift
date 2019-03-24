@@ -10,6 +10,20 @@ import Foundation
 import UIKit
 import MapKit
 
+extension CLLocation {
+    
+    /// Get distance between two points
+    ///
+    /// - Parameters:
+    ///   - from: first point
+    ///   - to: second point
+    /// - Returns: the distance in meters
+    class func distance(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) -> CLLocationDistance {
+        let from = CLLocation(latitude: from.latitude, longitude: from.longitude)
+        let to = CLLocation(latitude: to.latitude, longitude: to.longitude)
+        return from.distance(from: to)
+    }
+}
 
 class Pin: NSObject, NSCoding, MKAnnotation {
     
@@ -96,4 +110,12 @@ class Pin: NSObject, NSCoding, MKAnnotation {
         self.init(name:title, visited:visited, location:coordinate, images: images)
     }
 
+    func overlapping(_ pin: Pin) -> Bool {
+        return self.overlapping(pin.coordinate)
+    }
+    
+    func overlapping(_ location: CLLocationCoordinate2D) -> Bool {
+        let distanceInMeters = CLLocation.distance(from: self.coordinate, to: location)
+        return distanceInMeters < 1000 // if distance smaller than 1 km
+    }
 }
