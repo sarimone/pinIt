@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,14 +15,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iTrip" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.45000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adult-book-business-297755" translatesAutoresizingMaskIntoConstraints="NO" id="EAk-sU-U8I">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tq-wh-C4D" userLabel="PinItView">
-                                <rect key="frame" x="137.5" y="337" width="100" height="128"/>
+                                <rect key="frame" x="157" y="337" width="100" height="197"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="it " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6n-Qj-c9r">
                                         <rect key="frame" x="37" y="40" width="53" height="80"/>
@@ -81,11 +81,11 @@
             <objects>
                 <viewController id="1uk-78-SAr" customClass="MapViewController" customModule="iTrip" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZRC-Ku-SBn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="PZy-9n-kWW">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                                 <connections>
                                     <outlet property="delegate" destination="1uk-78-SAr" id="AAr-R3-akw"/>
                                 </connections>
@@ -113,6 +113,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="myMapView" destination="PZy-9n-kWW" id="O1J-TY-kk9"/>
+                        <segue destination="Nsc-oc-ipo" kind="show" identifier="showBlogVC" id="hlb-Nv-ik7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nbE-AE-W7c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -122,19 +123,19 @@
         <!--Title-->
         <scene sceneID="apD-ex-Hhc">
             <objects>
-                <viewController storyboardIdentifier="BlogViewController" hidesBottomBarWhenPushed="YES" id="Nsc-oc-ipo" customClass="BlogViewController" customModule="iTrip" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BlogViewController" id="Nsc-oc-ipo" customClass="BlogViewController" customModule="iTrip" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cjg-tZ-gle">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kah-sP-kEe" userLabel="HeroView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R6p-6V-sUw" userLabel="PhotoView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="470"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="470"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="i1W-J5-Rf4">
-                                                <rect key="frame" x="0.0" y="60" width="375" height="410"/>
+                                                <rect key="frame" x="0.0" y="60" width="414" height="410"/>
                                                 <color key="backgroundColor" red="0.83576384039999996" green="1" blue="0.89436616759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bZc-cU-Lf0">
                                                     <size key="itemSize" width="180" height="180"/>
@@ -216,7 +217,7 @@
                                         </constraints>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Text..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nWM-Yo-LhR">
-                                        <rect key="frame" x="30" y="500" width="315" height="137"/>
+                                        <rect key="frame" x="30" y="500" width="354" height="142"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -238,11 +239,11 @@
                                 <constraints>
                                     <constraint firstItem="R6p-6V-sUw" firstAttribute="centerX" secondItem="Kah-sP-kEe" secondAttribute="centerX" id="0Im-IL-Zc9"/>
                                     <constraint firstItem="R6p-6V-sUw" firstAttribute="top" secondItem="Kah-sP-kEe" secondAttribute="top" id="0ff-ws-pHd"/>
-                                    <constraint firstAttribute="trailing" secondItem="R6p-6V-sUw" secondAttribute="trailing" id="MN4-YT-sSM"/>
+                                    <constraint firstItem="R6p-6V-sUw" firstAttribute="trailing" secondItem="Kah-sP-kEe" secondAttribute="trailing" id="MN4-YT-sSM"/>
                                     <constraint firstItem="nWM-Yo-LhR" firstAttribute="top" secondItem="R6p-6V-sUw" secondAttribute="bottom" constant="30" id="Pmi-3u-qjM"/>
-                                    <constraint firstAttribute="trailing" secondItem="nWM-Yo-LhR" secondAttribute="trailing" constant="30" id="kA8-Kp-wBT"/>
+                                    <constraint firstItem="nWM-Yo-LhR" firstAttribute="trailing" secondItem="Kah-sP-kEe" secondAttribute="trailing" constant="-30" id="kA8-Kp-wBT"/>
                                     <constraint firstItem="nWM-Yo-LhR" firstAttribute="centerX" secondItem="Kah-sP-kEe" secondAttribute="centerX" id="kyx-tg-Mr6"/>
-                                    <constraint firstAttribute="bottom" secondItem="nWM-Yo-LhR" secondAttribute="bottom" constant="30" id="nOt-gp-wy4"/>
+                                    <constraint firstItem="nWM-Yo-LhR" firstAttribute="bottom" secondItem="Kah-sP-kEe" secondAttribute="bottom" constant="-30" id="nOt-gp-wy4"/>
                                     <constraint firstItem="nWM-Yo-LhR" firstAttribute="leading" secondItem="Kah-sP-kEe" secondAttribute="leading" constant="30" id="nWg-dH-Hhk"/>
                                     <constraint firstItem="R6p-6V-sUw" firstAttribute="leading" secondItem="Kah-sP-kEe" secondAttribute="leading" id="rZI-fi-ejy"/>
                                 </constraints>
@@ -252,8 +253,8 @@
                         <constraints>
                             <constraint firstItem="Kah-sP-kEe" firstAttribute="bottom" secondItem="d7g-ev-vtr" secondAttribute="bottom" id="Elb-Bh-9NN"/>
                             <constraint firstItem="Kah-sP-kEe" firstAttribute="leading" secondItem="Cjg-tZ-gle" secondAttribute="leading" id="LE6-kv-gRF"/>
-                            <constraint firstAttribute="trailing" secondItem="Kah-sP-kEe" secondAttribute="trailing" id="SgN-UO-Uwg"/>
-                            <constraint firstItem="Kah-sP-kEe" firstAttribute="top" secondItem="Cjg-tZ-gle" secondAttribute="top" id="tBz-8M-OO6"/>
+                            <constraint firstItem="Kah-sP-kEe" firstAttribute="trailing" secondItem="Cjg-tZ-gle" secondAttribute="trailing" id="SgN-UO-Uwg"/>
+                            <constraint firstItem="Kah-sP-kEe" firstAttribute="top" secondItem="d7g-ev-vtr" secondAttribute="top" id="tBz-8M-OO6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d7g-ev-vtr"/>
                     </view>
@@ -276,6 +277,7 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="clearButton" destination="3H3-fx-pEu" id="AJH-vy-i71"/>
                         <outlet property="doneButton" destination="E2d-ar-s0C" id="rjc-Ka-Svx"/>
@@ -287,7 +289,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QcJ-0W-yW7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3212" y="144.3778110944528"/>
+            <point key="canvasLocation" x="3230" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SB8-2j-hiK">
@@ -296,7 +298,7 @@
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="O3G-QE-QeJ">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
