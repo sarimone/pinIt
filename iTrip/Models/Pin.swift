@@ -64,8 +64,14 @@ class Pin: NSObject, NSCoding, MKAnnotation {
         aCoder.encode(coordinateLngDouble, forKey: Key.coordinateLng.rawValue)
         aCoder.encode(identifier, forKey: Key.identifier.rawValue)
         
-        if images.count > 0, let data = images[0].pngData() {
-            aCoder.encode(data, forKey: Key.images.rawValue)
+        if images.count > 0 {
+            var localImages: [Data] = []
+            for image in images {
+                if let data = image.pngData() {
+                    localImages.append(data)
+                }
+            }
+            aCoder.encode(localImages, forKey: Key.images.rawValue)
         }
     }
     
@@ -79,9 +85,12 @@ class Pin: NSObject, NSCoding, MKAnnotation {
         let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(coordinateLatDouble), longitude: CLLocationDegrees(coordinateLngDouble))
         
         var images: [UIImage] = []
-        if let data = aDecoder.decodeObject(forKey: Key.images.rawValue) as? Data {
-            if let image = UIImage(data: data) {
-                images.append(image)
+        if let data = aDecoder.decodeObject(forKey: Key.images.rawValue) as? [Data] {
+            
+            for image in data {
+                if let image = UIImage(data: image) {
+                    images.append(image)
+                }
             }
         }
         self.init(name:title, visited:visited, location:coordinate, images: images)
