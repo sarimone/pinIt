@@ -18,7 +18,7 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var uploadeImageButton: UIButton!
     @IBOutlet weak var switchPinStatus: UISwitch!
-    
+    @IBOutlet weak var textBoxTitle: UITextField!
     
     var imagePicker = UIImagePickerController()
     var arrOfImages = [UIImage]()
@@ -39,7 +39,10 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate {
         guard let p = self.pin else { return }
         self.title = p.title
         if self.textView != nil {
-            self.textView.text = p.title
+            self.textView.text = p.text
+        }
+        if self.textBoxTitle != nil {
+            self.textBoxTitle.text = p.title
         }
         if self.gallery != nil {
             self.arrOfImages = p.images
@@ -69,7 +72,8 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBAction func saveClick(_ sender: Any?) {
         if mapViewDelegate != nil, let index = self.index, let newPin = self.pin {
-            newPin.title = self.textView.text
+            newPin.text = self.textView.text
+            newPin.title = self.textBoxTitle.text
             newPin.images = self.arrOfImages
             newPin.visited = switchPinStatus.isOn
             mapViewDelegate.savePin(index: index, pin: newPin)

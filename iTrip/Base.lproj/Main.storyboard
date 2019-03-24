@@ -120,7 +120,7 @@
             </objects>
             <point key="canvasLocation" x="2420" y="133.5832083958021"/>
         </scene>
-        <!--Title-->
+        <!--Blog View Controller-->
         <scene sceneID="apD-ex-Hhc">
             <objects>
                 <viewController storyboardIdentifier="BlogViewController" id="Nsc-oc-ipo" customClass="BlogViewController" customModule="iTrip" customModuleProvider="target" sceneMemberID="viewController">
@@ -258,12 +258,21 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d7g-ev-vtr"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="G3R-vj-phI">
+                    <navigationItem key="navigationItem" id="G3R-vj-phI">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="stop" id="6eI-Av-qVP">
                             <connections>
                                 <action selector="backClick:" destination="Nsc-oc-ipo" id="KDz-lt-sjr"/>
                             </connections>
                         </barButtonItem>
+                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" restorationIdentifier="TitleTextBox" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Test" textAlignment="center" minimumFontSize="17" id="rQc-FN-ciV">
+                            <rect key="frame" x="54" y="13.666666666666664" width="256" height="17"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
                         <rightBarButtonItems>
                             <barButtonItem style="plain" systemItem="trash" id="nG7-rY-uM1">
                                 <connections>
@@ -283,13 +292,14 @@
                         <outlet property="doneButton" destination="E2d-ar-s0C" id="rjc-Ka-Svx"/>
                         <outlet property="gallery" destination="i1W-J5-Rf4" id="0Hs-8n-eSV"/>
                         <outlet property="switchPinStatus" destination="3I5-IL-CoE" id="dST-TB-BI6"/>
+                        <outlet property="textBoxTitle" destination="rQc-FN-ciV" id="27y-vN-kQ7"/>
                         <outlet property="textView" destination="nWM-Yo-LhR" id="WWV-Oo-lrR"/>
                         <outlet property="uploadeImageButton" destination="TBk-rW-cQB" id="B7p-qF-2Be"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QcJ-0W-yW7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3230" y="134"/>
+            <point key="canvasLocation" x="3228.985507246377" y="133.69565217391306"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SB8-2j-hiK">

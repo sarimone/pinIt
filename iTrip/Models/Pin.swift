@@ -31,6 +31,7 @@ class Pin: NSObject, NSCoding, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var identifier = "locations"
     var title: String? = ""
+    var text: String = ""
     var images: [UIImage] = []
     
     enum Key: String {
@@ -40,6 +41,7 @@ class Pin: NSObject, NSCoding, MKAnnotation {
         case coordinateLng = "coordinate-lng"
         case identifier = "identifier"
         case title = "title"
+        case text = "text"
         case images = "images"
     }
     
@@ -59,10 +61,11 @@ class Pin: NSObject, NSCoding, MKAnnotation {
     }
     
     
-    init(name:String, visited:Bool?, location:CLLocationCoordinate2D, images: [UIImage] = []) {
+    init(name:String, visited:Bool?, location:CLLocationCoordinate2D, images: [UIImage] = [], text: String = "") {
         self.visited = visited
         self.coordinate = location
         self.title = name
+        self.text = text
         self.images = images
     }
     
@@ -73,6 +76,7 @@ class Pin: NSObject, NSCoding, MKAnnotation {
         let coordinateLngDouble = Double(coordinate.longitude)
         
         aCoder.encode(title, forKey: Key.title.rawValue)
+        aCoder.encode(text, forKey: Key.text.rawValue)
         aCoder.encode(visited ?? false, forKey: Key.visited.rawValue)
         aCoder.encode(coordinateLatDouble, forKey: Key.coordinateLat.rawValue)
         aCoder.encode(coordinateLngDouble, forKey: Key.coordinateLng.rawValue)
@@ -91,6 +95,7 @@ class Pin: NSObject, NSCoding, MKAnnotation {
     
     convenience required init?(coder aDecoder: NSCoder) {
         guard let title = aDecoder.decodeObject(forKey: Key.title.rawValue) as? String else { return nil }
+        guard let text = aDecoder.decodeObject(forKey: Key.text.rawValue) as? String else { return nil }
         
         let visited = aDecoder.decodeBool(forKey: Key.visited.rawValue)
         
@@ -107,7 +112,7 @@ class Pin: NSObject, NSCoding, MKAnnotation {
                 }
             }
         }
-        self.init(name:title, visited:visited, location:coordinate, images: images)
+        self.init(name:title, visited:visited, location:coordinate, images: images, text: text)
     }
 
     func overlapping(_ pin: Pin) -> Bool {
