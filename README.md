@@ -1,13 +1,13 @@
 # pinIt
-Keep track of the places you visited or want to visit.
+Keep track of the places you have visited or wish to visit.
 
 [![Swift Version][swift-image]][swift-url]
 [![License][license-image]][license-url] 
 [![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](http://cocoapods.org/pods/LFAlertController)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-pinIt is an app to remond you of the highlights of your trips around the world and your wish lists. 
-You can search the locations you have visited and save a pin with "Visited" status which has an associated blog view which appears when you tap on the pin. You can upload phhotos and write notes for the preticular location. Same featuere is provided for the locations that you would like to visit in the future. Eventually whenevr the map your will be reminded howmany places are left to visit for you or how many places you have visited already with the colorful pins. 
+pinIt is an app to remind the users of the highlights of their trips around the world and the users' wish lists.
+Locations searched by the user will be flaged with a pin on the map. User has to select the pin's status. Users will be able to diffrenciate the pins status(visited/ to visit) with their colors and titles. When user opens the app will get an idea about which areas have been visited and howmany are to be. Also the blogs associated with each pin  will provide the feature to uploade photos and notes. User can save the highlights of their trips to the locations or even save screenshots and notes of the places they want to visit later over the time so they don't miss it when they are there.
 
 TODO: [![][header.png]]
 
