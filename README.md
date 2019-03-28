@@ -36,7 +36,7 @@ Sara Bahrini – Sara.bahreini@gmail.com
 
 Distributed under the [MIT License][license-url] license.
 
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+[https://github.com/sarabahrini/github-link](https://github.com/dbader/)
 
 [swift-image]:https://img.shields.io/badge/swift-4.2-orange.svg
 [swift-url]: https://swift.org/
