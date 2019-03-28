@@ -34,7 +34,7 @@ TODO: [![][header.png]]
 
 Sara Bahrini – Sara.bahreini@gmail.com
 
-Distributed under the [MIT License][license-url] license.
+Distributed under the [MIT][license-url] license.
 
 [https://github.com/sarabahrini/github-link](https://github.com/dbader/)
 
