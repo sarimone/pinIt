@@ -1,12 +1,13 @@
 # pinIt
-> TODO: Write a short line about the app
+Keep track of the places you visited or want to visit.
 
 [![Swift Version][swift-image]][swift-url]
 [![License][license-image]][license-url] 
 [![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](http://cocoapods.org/pods/LFAlertController)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-TODO: Write one to two paragraph statement about your product and what it does. 
+pinIt is an app to remond you of the highlights of your trips around the world and your wish lists. 
+You can search the locations you have visited and save a pin with "Visited" status which has an associated blog view which appears when you tap on the pin. You can upload phhotos and write notes for the preticular location. Same featuere is provided for the locations that you would like to visit in the future. Eventually whenevr the map your will be reminded howmany places are left to visit for you or how many places you have visited already with the colorful pins. 
 
 TODO: [![][header.png]]
 
