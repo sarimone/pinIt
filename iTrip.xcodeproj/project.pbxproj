@@ -19,6 +19,8 @@
 		560FE4F32225A0C8002E1479 /* CustomCellClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560FE4F22225A0C7002E1479 /* CustomCellClass.swift */; };
 		567E7D76222FCAFF00FF5FAC /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567E7D75222FCAFF00FF5FAC /* Pin.swift */; };
 		567E7D78222FF23700FF5FAC /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567E7D77222FF23700FF5FAC /* CustomAnnotation.swift */; };
+		F4425C8D224EB2E8000B17E5 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4425C8C224EB2E8000B17E5 /* SearchBarView.swift */; };
+		F4425C8F224EB300000B17E5 /* ASDF.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4425C8E224EB300000B17E5 /* ASDF.xib */; };
 		F4B1B8C22232D8500095236E /* PinMKAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1B8C12232D8500095236E /* PinMKAnnotationView.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +39,8 @@
 		560FE4F22225A0C7002E1479 /* CustomCellClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellClass.swift; sourceTree = "<group>"; };
 		567E7D75222FCAFF00FF5FAC /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		567E7D77222FF23700FF5FAC /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
+		F4425C8C224EB2E8000B17E5 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		F4425C8E224EB300000B17E5 /* ASDF.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ASDF.xib; sourceTree = "<group>"; };
 		F4B1B8C12232D8500095236E /* PinMKAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinMKAnnotationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +121,8 @@
 				560FE4F22225A0C7002E1479 /* CustomCellClass.swift */,
 				567E7D77222FF23700FF5FAC /* CustomAnnotation.swift */,
 				F4B1B8C12232D8500095236E /* PinMKAnnotationView.swift */,
+				F4425C8C224EB2E8000B17E5 /* SearchBarView.swift */,
+				F4425C8E224EB300000B17E5 /* ASDF.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -179,6 +185,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4425C8F224EB300000B17E5 /* ASDF.xib in Resources */,
 				560FE4D0221D9FC0002E1479 /* LaunchScreen.storyboard in Resources */,
 				560FE4CD221D9FC0002E1479 /* Assets.xcassets in Resources */,
 				560FE4C8221D9FBD002E1479 /* Main.storyboard in Resources */,
@@ -192,6 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4425C8D224EB2E8000B17E5 /* SearchBarView.swift in Sources */,
 				567E7D76222FCAFF00FF5FAC /* Pin.swift in Sources */,
 				560FE4C5221D9FBD002E1479 /* ViewController.swift in Sources */,
 				560FE4F122249541002E1479 /* BlogViewController.swift in Sources */,

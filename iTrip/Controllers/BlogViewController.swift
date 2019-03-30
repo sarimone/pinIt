@@ -67,7 +67,7 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate {
     
     
     @IBAction func backClick(_ sender: Any?) {
-        _ = navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func saveClick(_ sender: Any?) {
@@ -78,7 +78,7 @@ class BlogViewController: UIViewController, UINavigationControllerDelegate {
             newPin.visited = switchPinStatus.isOn
             mapViewDelegate.savePin(index: index, pin: newPin)
         }
-        _ = navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func longTap(_ gesture: UIGestureRecognizer){

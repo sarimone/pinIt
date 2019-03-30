@@ -18,7 +18,10 @@ protocol MapBlogDelegate {
 class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var myMapView: MKMapView!
+    @IBOutlet weak var mapBufferOverlay: UIImageView!
     
+    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var searchBarLeadingConstraint: NSLayoutConstraint!
     // updates and showes the user's current location
     let manager = CLLocationManager()
     
@@ -31,39 +34,46 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
         self.myMapView.showsUserLocation = true
     }
     
-    @IBAction func searchBtn(_ sender: Any) {
-       let searchController = UISearchController(searchResultsController: nil)
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.delegate = self
-        present(searchController, animated: true, completion: nil)
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+        if fullyRendered && !mapBufferOverlay.isAnimating && !mapBufferOverlay.isHidden {
+            UIView.animate(withDuration: 0.5, delay: 0.5, options: .curveEaseOut, animations: {
+                self.mapBufferOverlay.alpha = 0.0
+            }, completion: { _ in
+                self.mapBufferOverlay.isHidden = true
+            })
+        }
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-       // Ignoring user
-        UIApplication.shared.beginIgnoringInteractionEvents()
-        
-        //Activity Indicator
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.style = UIActivityIndicatorView.Style.gray
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.startAnimating()
+    @IBAction func searchBtnClick(_ sender: Any) {
+        showSearch()
 
-        self.view.addSubview(activityIndicator)
+    }
+    
+    func showSearch() {
         
-        //Hide search Bar
-        searchBar.resignFirstResponder()
-        dismiss(animated: true, completion: nil)
+        self.searchBarLeadingConstraint.constant = 40
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func hideSearch() {
+        
+        self.searchBarLeadingConstraint.constant = self.view.frame.width - 80
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func search(_ text: String?) {
         
         // Create the search request
         let searchRequest = MKLocalSearch.Request()
-        searchRequest.naturalLanguageQuery = searchBar.text
+        searchRequest.naturalLanguageQuery = text
         
         let activeSearch = MKLocalSearch(request: searchRequest)
         activeSearch.start { (response, error) in
             
-            activityIndicator.stopAnimating()
             UIApplication.shared.endIgnoringInteractionEvents()
             
             if response == nil { print("error") }
@@ -74,12 +84,11 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
                         response?.boundingRegion.center.latitude ?? 0,
                         response?.boundingRegion.center.longitude ?? 0
                     ),
-                    title: searchBar.text ?? "undefined"
+                    title: text ?? "undefined"
                 )
                 
             }
         }
-
     }
     
     func addPin(location: CLLocationCoordinate2D, title: String) {
@@ -165,7 +174,10 @@ class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.searchBarLeadingConstraint.constant = self.view.frame.width - 80
         
+        
+        searchTextField.delegate = self
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
@@ -250,4 +262,15 @@ extension MapViewController: MapBlogDelegate {
     }
     
   
+}
+
+
+extension MapViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if (textField.returnKeyType == .go) {
+            search(searchTextField.text)
+            hideSearch()
+        }
+        return true
+    }
 }
