@@ -94,7 +94,7 @@
         <scene sceneID="apD-ex-Hhc">
             <objects>
                 <viewController storyboardIdentifier="BlogViewController" id="Nsc-oc-ipo" customClass="BlogViewController" customModule="iTrip" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Cjg-tZ-gle">
+                    <view key="view" contentMode="scaleToFill" id="Cjg-tZ-gle" customClass="BlurryBackgroundView" customModule="iTrip" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -102,35 +102,35 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y1Q-mA-TdE" userLabel="Button Back">
-                                        <rect key="frame" x="20" y="29" width="16" height="22"/>
+                                        <rect key="frame" x="19.999999999999996" y="26" width="33.666666666666657" height="28.333333333333329"/>
                                         <state key="normal" image="back"/>
                                         <connections>
                                             <action selector="backClick:" destination="Nsc-oc-ipo" eventType="touchUpInside" id="13W-Q8-Ga1"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" restorationIdentifier="TitleTextBox" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Test" placeholder="Add title..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rQc-FN-ciV">
-                                        <rect key="frame" x="56" y="8" width="266" height="64"/>
+                                        <rect key="frame" x="73.666666666666671" y="8" width="234.33333333333331" height="64"/>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ivi-1D-drE" userLabel="Button Delete">
-                                        <rect key="frame" x="378" y="29" width="16" height="22"/>
+                                        <rect key="frame" x="375" y="24.666666666666671" width="19" height="31"/>
                                         <state key="normal" image="delete"/>
                                         <connections>
                                             <action selector="removeBlogOnClick:" destination="Nsc-oc-ipo" eventType="touchUpInside" id="nRW-t2-4xh"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOH-Wp-9DB" userLabel="Button Save">
-                                        <rect key="frame" x="342" y="29" width="16" height="22"/>
+                                        <rect key="frame" x="328" y="24.666666666666671" width="27" height="31"/>
                                         <state key="normal" image="save"/>
                                         <connections>
                                             <action selector="saveClick:" destination="Nsc-oc-ipo" eventType="touchUpInside" id="uO9-l9-UvH"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="rQc-FN-ciV" secondAttribute="bottom" constant="8" id="Eev-MB-zd3"/>
                                     <constraint firstItem="ivi-1D-drE" firstAttribute="trailing" secondItem="YRG-lb-jut" secondAttribute="trailing" constant="-20" id="NYu-M4-Gm2"/>
@@ -153,7 +153,7 @@
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="i1W-J5-Rf4">
                                                 <rect key="frame" x="0.0" y="60" width="414" height="410"/>
-                                                <color key="backgroundColor" red="0.83576384039999996" green="1" blue="0.89436616759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bZc-cU-Lf0">
                                                     <size key="itemSize" width="180" height="180"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -222,7 +222,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="i1W-J5-Rf4" firstAttribute="top" secondItem="R6p-6V-sUw" secondAttribute="top" constant="60" id="6pQ-a3-yfd"/>
                                             <constraint firstAttribute="bottom" secondItem="i1W-J5-Rf4" secondAttribute="bottom" id="BjQ-kN-eir"/>
@@ -235,7 +235,7 @@
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Text..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nWM-Yo-LhR">
                                         <rect key="frame" x="30" y="500" width="354" height="208"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -252,7 +252,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </switch>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="R6p-6V-sUw" firstAttribute="centerX" secondItem="Kah-sP-kEe" secondAttribute="centerX" id="0Im-IL-Zc9"/>
                                     <constraint firstItem="R6p-6V-sUw" firstAttribute="top" secondItem="Kah-sP-kEe" secondAttribute="top" id="0ff-ws-pHd"/>
@@ -266,7 +266,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Kah-sP-kEe" firstAttribute="bottom" secondItem="d7g-ev-vtr" secondAttribute="bottom" id="Elb-Bh-9NN"/>
                             <constraint firstItem="Kah-sP-kEe" firstAttribute="leading" secondItem="Cjg-tZ-gle" secondAttribute="leading" id="LE6-kv-gRF"/>
